@@ -1,0 +1,756 @@
+{
+  "project_name": "Travel Big Pack",
+  "prompt_version": "1.0",
+  "target_ai": "Replit AI",
+  "language": "fr",
+
+  "project_overview": {
+    "brand_name": "Travel Big Pack",
+    "tagline": "Votre agence de voyage tout-en-un",
+    "description": "Plateforme web complète d'agence de voyage multi-services. Travel Big Pack propose tous les services dont un voyageur a besoin : vols, hôtels, location de voitures, trains & bus, transferts, tours & activités, croisières, assurance voyage, eSIM, et bien plus. La marque Travel Big Pack est mise en avant à chaque instant. Aucune mention de partenaires tiers ou de plateformes externes ne doit apparaître sur l'interface utilisateur.",
+    "type": "Full-stack web application",
+    "stack": {
+      "frontend": "React.js avec Tailwind CSS",
+      "backend": "Node.js + Express",
+      "database": "PostgreSQL ou MongoDB",
+      "hosting": "Replit (déploiement intégré)"
+    }
+  },
+
+  "design_system": {
+    "brand_identity": {
+      "primary_color": "#1A3C5E",
+      "secondary_color": "#F4A020",
+      "accent_color": "#00C9A7",
+      "background_color": "#F8F9FA",
+      "text_color": "#1C1C2E",
+      "font_heading": "Poppins, sans-serif",
+      "font_body": "Inter, sans-serif"
+    },
+    "logo": {
+      "text": "Travel Big Pack",
+      "icon": "🌍 sac à dos stylisé avec avion",
+      "placement": "navbar haut gauche, footer centre"
+    },
+    "style_guidelines": [
+      "Design moderne, épuré, professionnel et inspirant",
+      "Utiliser des images haute qualité de destinations mondiales",
+      "Animations fluides au scroll et au hover",
+      "Cartes avec ombres douces et coins arrondis",
+      "Boutons CTA bien visibles en couleur secondaire (#F4A020)",
+      "Hero section avec image plein écran et formulaire de recherche centré",
+      "Mobile-first, entièrement responsive"
+    ]
+  },
+
+  "navigation": {
+    "navbar": {
+      "position": "fixed top",
+      "transparent_on_hero": true,
+      "solid_on_scroll": true,
+      "items": [
+        { "label": "Accueil", "route": "/" },
+        { "label": "✈️ Vols", "route": "/vols" },
+        { "label": "🏨 Hôtels", "route": "/hotels" },
+        { "label": "🚗 Location de voitures", "route": "/location-voitures" },
+        { "label": "🚆 Trains & Bus", "route": "/trains-bus" },
+        { "label": "🚁 Transferts & Aéroport", "route": "/transferts" },
+        { "label": "🎯 Tours & Activités", "route": "/tours-activites" },
+        { "label": "🛳️ Croisières", "route": "/croisieres" },
+        { "label": "🛡️ Assurance Voyage", "route": "/assurance" },
+        { "label": "📱 eSIM & Connectivité", "route": "/esim" },
+        { "label": "🏕️ Séjours & Packages", "route": "/packages" }
+      ],
+      "cta_button": {
+        "label": "Se connecter",
+        "style": "outlined"
+      },
+      "mobile": "hamburger menu avec drawer latéral"
+    },
+    "footer": {
+      "sections": [
+        {
+          "title": "Nos Services",
+          "links": ["Vols", "Hôtels", "Location de voitures", "Trains & Bus", "Transferts", "Tours & Activités", "Croisières", "Assurance Voyage", "eSIM", "Packages"]
+        },
+        {
+          "title": "Travel Big Pack",
+          "links": ["À propos", "Pourquoi nous choisir", "Témoignages", "Blog Voyage", "Devenir partenaire"]
+        },
+        {
+          "title": "Aide & Support",
+          "links": ["Centre d'aide", "FAQ", "Contactez-nous", "Remboursements", "Conditions générales", "Politique de confidentialité"]
+        },
+        {
+          "title": "Nous suivre",
+          "social": ["Instagram", "Facebook", "TikTok", "YouTube", "X (Twitter)"]
+        }
+      ],
+      "bottom_bar": "© 2025 Travel Big Pack. Tous droits réservés."
+    }
+  },
+
+  "pages": [
+
+    {
+      "id": "home",
+      "route": "/",
+      "name": "Page d'Accueil",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero_fullscreen",
+          "background": "image plein écran d'une destination iconique (ex: Santorín, Paris, Bali) en rotation automatique",
+          "overlay": "gradient sombre semi-transparent",
+          "content": {
+            "headline": "Voyagez plus loin avec Travel Big Pack",
+            "subheadline": "Vols, hôtels, voitures, activités et bien plus — tout en un seul endroit.",
+            "search_widget": {
+              "tabs": ["Vols", "Hôtels", "Voitures", "Trains", "Packages"],
+              "active_tab_default": "Vols",
+              "cta_button": "Rechercher"
+            }
+          }
+        },
+        {
+          "id": "services_grid",
+          "type": "grid_cards",
+          "title": "Tous vos besoins de voyage, réunis",
+          "subtitle": "De la réservation de vol jusqu'à votre eSIM à l'arrivée — Travel Big Pack couvre tout.",
+          "cards": [
+            { "icon": "✈️", "title": "Vols", "description": "Des milliers de destinations, les meilleurs tarifs." },
+            { "icon": "🏨", "title": "Hôtels", "description": "Hôtels, appartements, auberges et plus." },
+            { "icon": "🚗", "title": "Location de voitures", "description": "Liberté totale à destination." },
+            { "icon": "🚆", "title": "Trains & Bus", "description": "Voyagez en Europe et partout dans le monde." },
+            { "icon": "🚁", "title": "Transferts", "description": "Aéroport, hôtel, partout — sans stress." },
+            { "icon": "🎯", "title": "Tours & Activités", "description": "Expériences locales inoubliables." },
+            { "icon": "🛳️", "title": "Croisières", "description": "La mer comme vous ne l'avez jamais vécue." },
+            { "icon": "🛡️", "title": "Assurance Voyage", "description": "Voyagez l'esprit tranquille." },
+            { "icon": "📱", "title": "eSIM & Connectivité", "description": "Restez connecté dans plus de 200 pays." },
+            { "icon": "🏕️", "title": "Packages Tout Compris", "description": "Séjours clés en main au meilleur prix." }
+          ]
+        },
+        {
+          "id": "destinations_populaires",
+          "type": "horizontal_scroll_cards",
+          "title": "Destinations Tendance",
+          "cards_count": 8,
+          "card_content": ["image destination", "nom de la ville", "prix à partir de", "bouton Découvrir"]
+        },
+        {
+          "id": "why_us",
+          "type": "feature_columns",
+          "title": "Pourquoi choisir Travel Big Pack ?",
+          "features": [
+            { "icon": "🔒", "title": "100% Sécurisé", "text": "Paiements cryptés et données protégées." },
+            { "icon": "💰", "title": "Meilleurs Prix Garantis", "text": "Si vous trouvez moins cher, on s'aligne." },
+            { "icon": "🌍", "title": "Couverture Mondiale", "text": "+200 pays et destinations disponibles." },
+            { "icon": "🎧", "title": "Support 24/7", "text": "Notre équipe est là pour vous à tout moment." }
+          ]
+        },
+        {
+          "id": "testimonials",
+          "type": "carousel",
+          "title": "Ce que disent nos voyageurs",
+          "items_count": 6,
+          "fields": ["photo profil", "prénom", "pays", "note étoiles", "témoignage texte"]
+        },
+        {
+          "id": "newsletter",
+          "type": "banner_cta",
+          "background_color": "#1A3C5E",
+          "title": "🎁 Obtenez -15% sur votre première réservation",
+          "subtitle": "Inscrivez-vous à notre newsletter et recevez des offres exclusives.",
+          "input_placeholder": "Votre adresse email",
+          "button_label": "Je m'inscris"
+        }
+      ]
+    },
+
+    {
+      "id": "flights",
+      "route": "/vols",
+      "name": "Page Vols",
+      "sections": [
+        {
+          "id": "flight_hero",
+          "type": "page_hero",
+          "background": "image d'avion au décollage, ciel bleu",
+          "headline": "Trouvez votre vol idéal",
+          "subheadline": "Comparez des milliers de vols et partez au meilleur prix."
+        },
+        {
+          "id": "flight_search_form",
+          "type": "search_form",
+          "fields": [
+            { "name": "trip_type", "type": "radio_tabs", "options": ["Aller simple", "Aller-retour", "Multi-destinations"] },
+            { "name": "origin", "type": "airport_autocomplete", "label": "Départ" },
+            { "name": "destination", "type": "airport_autocomplete", "label": "Destination" },
+            { "name": "depart_date", "type": "date_picker", "label": "Date de départ" },
+            { "name": "return_date", "type": "date_picker", "label": "Date de retour", "conditional": "aller-retour" },
+            { "name": "passengers", "type": "dropdown_counter", "label": "Passagers", "options": ["Adultes", "Enfants", "Bébés"] },
+            { "name": "cabin_class", "type": "select", "label": "Classe", "options": ["Économique", "Premium Économique", "Affaires", "Première"] }
+          ],
+          "cta": "Rechercher des vols"
+        },
+        {
+          "id": "flight_results",
+          "type": "results_list",
+          "filters": ["Prix", "Durée", "Escales", "Compagnie aérienne", "Heure de départ"],
+          "sort_options": ["Moins cher", "Plus rapide", "Meilleur rapport qualité/prix"],
+          "result_card_fields": ["logo compagnie", "horaires départ/arrivée", "durée", "escales", "prix", "bouton Sélectionner"]
+        },
+        {
+          "id": "flight_promo",
+          "type": "deals_banner",
+          "title": "🔥 Offres Flash Vols",
+          "items": "6 cartes destinations avec prix barré et prix réduit"
+        }
+      ]
+    },
+
+    {
+      "id": "hotels",
+      "route": "/hotels",
+      "name": "Page Hôtels",
+      "sections": [
+        {
+          "id": "hotel_hero",
+          "type": "page_hero",
+          "headline": "L'hébergement parfait vous attend",
+          "subheadline": "Des hôtels de luxe aux auberges de jeunesse, trouvez votre nid idéal."
+        },
+        {
+          "id": "hotel_search_form",
+          "type": "search_form",
+          "fields": [
+            { "name": "destination", "type": "city_autocomplete", "label": "Ville ou hôtel" },
+            { "name": "checkin", "type": "date_picker", "label": "Arrivée" },
+            { "name": "checkout", "type": "date_picker", "label": "Départ" },
+            { "name": "rooms", "type": "dropdown_counter", "label": "Chambres & Voyageurs" }
+          ],
+          "cta": "Chercher des hôtels"
+        },
+        {
+          "id": "hotel_results",
+          "type": "results_grid",
+          "filters": ["Prix par nuit", "Étoiles", "Note client", "Type (hôtel, appart, auberge)", "Équipements"],
+          "result_card_fields": ["photo", "nom hôtel", "étoiles", "note client", "emplacement", "prix/nuit", "bouton Réserver"]
+        },
+        {
+          "id": "hotel_types",
+          "type": "category_pills",
+          "title": "Choisissez votre style d'hébergement",
+          "categories": ["Hôtels", "Appartements", "Villas", "Auberges", "Boutique Hotels", "Resorts", "Maisons d'hôtes"]
+        }
+      ]
+    },
+
+    {
+      "id": "car_rental",
+      "route": "/location-voitures",
+      "name": "Page Location de Voitures",
+      "sections": [
+        {
+          "id": "car_hero",
+          "type": "page_hero",
+          "headline": "La liberté de rouler à votre rythme",
+          "subheadline": "Location de voitures dans le monde entier, au meilleur prix garanti."
+        },
+        {
+          "id": "car_search_form",
+          "type": "search_form",
+          "fields": [
+            { "name": "pickup_location", "type": "location_autocomplete", "label": "Lieu de prise en charge" },
+            { "name": "dropoff_location", "type": "location_autocomplete", "label": "Lieu de retour" },
+            { "name": "pickup_date", "type": "datetime_picker", "label": "Date & heure de prise en charge" },
+            { "name": "dropoff_date", "type": "datetime_picker", "label": "Date & heure de retour" },
+            { "name": "driver_age", "type": "select", "label": "Âge du conducteur" }
+          ],
+          "cta": "Trouver une voiture"
+        },
+        {
+          "id": "car_results",
+          "type": "results_grid",
+          "filters": ["Type de véhicule", "Transmission", "Prix/jour", "Climatisation", "Nombre de sièges", "Carburant"],
+          "vehicle_types": ["Économique", "Compacte", "SUV", "Berline", "Familiale", "Luxe", "Minivan", "4x4"],
+          "result_card_fields": ["photo voiture", "marque/modèle", "catégorie", "caractéristiques", "prix/jour", "bouton Réserver"]
+        },
+        {
+          "id": "motorcycle_bike",
+          "type": "sub_section",
+          "title": "Aussi disponibles : Motos & Vélos",
+          "options": ["Moto", "Scooter", "Vélo électrique", "Vélo classique"]
+        }
+      ]
+    },
+
+    {
+      "id": "trains_buses",
+      "route": "/trains-bus",
+      "name": "Page Trains & Bus",
+      "sections": [
+        {
+          "id": "train_hero",
+          "type": "page_hero",
+          "headline": "Voyagez autrement, voyagez malin",
+          "subheadline": "Billets de train, bus et ferry à travers l'Europe et le monde entier."
+        },
+        {
+          "id": "train_search_form",
+          "type": "search_form",
+          "fields": [
+            { "name": "transport_type", "type": "toggle_tabs", "options": ["Train", "Bus", "Ferry"] },
+            { "name": "origin_station", "type": "station_autocomplete", "label": "Gare de départ" },
+            { "name": "destination_station", "type": "station_autocomplete", "label": "Gare d'arrivée" },
+            { "name": "travel_date", "type": "date_picker", "label": "Date de voyage" },
+            { "name": "passengers", "type": "counter", "label": "Passagers" }
+          ],
+          "cta": "Rechercher"
+        },
+        {
+          "id": "rail_pass_banner",
+          "type": "promo_banner",
+          "title": "🇪🇺 Railpass Europe",
+          "description": "Voyagez librement dans toute l'Europe avec un seul pass.",
+          "cta": "Découvrir les Railpasses"
+        },
+        {
+          "id": "ferry_section",
+          "type": "sub_section",
+          "title": "🚢 Ferries & Liaisons maritimes",
+          "description": "Traversées méditerranéennes, îles grecques, Corse et bien plus."
+        }
+      ]
+    },
+
+    {
+      "id": "transfers",
+      "route": "/transferts",
+      "name": "Page Transferts & Aéroport",
+      "sections": [
+        {
+          "id": "transfer_hero",
+          "type": "page_hero",
+          "headline": "De l'aéroport à votre hôtel, sans effort",
+          "subheadline": "Transferts privés et partagés dans +1500 destinations mondiales."
+        },
+        {
+          "id": "transfer_search_form",
+          "type": "search_form",
+          "fields": [
+            { "name": "transfer_type", "type": "radio", "options": ["Aéroport → Hôtel", "Hôtel → Aéroport", "Point à Point"] },
+            { "name": "pickup", "type": "location_input", "label": "Lieu de départ" },
+            { "name": "dropoff", "type": "location_input", "label": "Destination" },
+            { "name": "pickup_datetime", "type": "datetime_picker", "label": "Date & heure" },
+            { "name": "passengers", "type": "counter", "label": "Passagers" }
+          ],
+          "cta": "Voir les transferts disponibles"
+        },
+        {
+          "id": "transfer_types",
+          "type": "cards_row",
+          "options": [
+            { "icon": "🚐", "title": "Transfert partagé", "description": "Économique et pratique" },
+            { "icon": "🚗", "title": "Transfert privé", "description": "Confort et flexibilité" },
+            { "icon": "🚌", "title": "Bus navette", "description": "La solution low-cost" },
+            { "icon": "🚁", "title": "Hélicoptère", "description": "L'expérience premium" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "tours_activities",
+      "route": "/tours-activites",
+      "name": "Page Tours & Activités",
+      "sections": [
+        {
+          "id": "tours_hero",
+          "type": "page_hero",
+          "headline": "Vivez des expériences uniques",
+          "subheadline": "Tours guidés, excursions, activités locales et billetterie dans le monde entier."
+        },
+        {
+          "id": "activity_search",
+          "type": "search_form",
+          "fields": [
+            { "name": "destination", "type": "city_autocomplete", "label": "Destination ou activité" },
+            { "name": "date", "type": "date_picker", "label": "Date" },
+            { "name": "category", "type": "select", "label": "Catégorie" }
+          ],
+          "cta": "Explorer les activités"
+        },
+        {
+          "id": "activity_categories",
+          "type": "category_grid",
+          "categories": [
+            "🏛️ Visites guidées",
+            "🤿 Sports & Aventure",
+            "🍽️ Gastronomie & Dégustations",
+            "🎭 Culture & Spectacles",
+            "🌊 Activités nautiques",
+            "🏔️ Randonnées & Nature",
+            "📸 Tours photo",
+            "🎟️ Billetterie attractions",
+            "🛕 Patrimoine & Histoire",
+            "🎵 Concerts & Events"
+          ]
+        },
+        {
+          "id": "top_experiences",
+          "type": "featured_grid",
+          "title": "🔥 Expériences les plus populaires",
+          "cards_count": 8,
+          "card_fields": ["photo", "titre", "lieu", "durée", "note", "prix", "bouton Réserver"]
+        },
+        {
+          "id": "audioguides",
+          "type": "promo_card",
+          "title": "🎧 Audioguides & Visites autonomes",
+          "description": "Explorez à votre rythme avec nos audioguides dans +50 villes."
+        }
+      ]
+    },
+
+    {
+      "id": "cruises",
+      "route": "/croisieres",
+      "name": "Page Croisières",
+      "sections": [
+        {
+          "id": "cruise_hero",
+          "type": "page_hero",
+          "headline": "Naviguez vers l'extraordinaire",
+          "subheadline": "Croisières méditerranéennes, Caraïbes, Asie et croisières fluviales."
+        },
+        {
+          "id": "cruise_search",
+          "type": "search_form",
+          "fields": [
+            { "name": "departure_port", "type": "port_autocomplete", "label": "Port de départ" },
+            { "name": "region", "type": "select", "label": "Région", "options": ["Méditerranée", "Caraïbes", "Asie", "Scandinavie", "Fluviale"] },
+            { "name": "duration", "type": "range_slider", "label": "Durée (nuits)" },
+            { "name": "departure_date", "type": "date_picker", "label": "Date de départ" },
+            { "name": "passengers", "type": "counter", "label": "Passagers" }
+          ],
+          "cta": "Rechercher une croisière"
+        },
+        {
+          "id": "cruise_types",
+          "type": "cards_row",
+          "title": "Quel type de croisière vous attire ?",
+          "options": ["Croisière maritime", "Croisière fluviale", "Croisière aventure", "Croisière luxe", "Croisière familiale"]
+        }
+      ]
+    },
+
+    {
+      "id": "insurance",
+      "route": "/assurance",
+      "name": "Page Assurance Voyage",
+      "sections": [
+        {
+          "id": "insurance_hero",
+          "type": "page_hero",
+          "headline": "Partez l'esprit léger, protégé à 100%",
+          "subheadline": "Assurances voyage complètes pour tous vos séjours."
+        },
+        {
+          "id": "insurance_quote_form",
+          "type": "quote_form",
+          "fields": [
+            { "name": "destination", "type": "country_select", "label": "Destination" },
+            { "name": "departure_date", "type": "date_picker", "label": "Départ" },
+            { "name": "return_date", "type": "date_picker", "label": "Retour" },
+            { "name": "travelers", "type": "counter", "label": "Nombre de voyageurs" },
+            { "name": "traveler_age", "type": "age_inputs", "label": "Âge des voyageurs" }
+          ],
+          "cta": "Obtenir un devis gratuit"
+        },
+        {
+          "id": "insurance_plans",
+          "type": "pricing_cards",
+          "title": "Nos formules d'assurance",
+          "plans": [
+            {
+              "name": "Essentiel",
+              "color": "#00C9A7",
+              "features": ["Annulation de voyage", "Assistance médicale", "Bagages perdus", "Retard de vol"]
+            },
+            {
+              "name": "Confort",
+              "color": "#F4A020",
+              "badge": "Populaire",
+              "features": ["Tout Essentiel +", "Sports & Activités", "Assistance rapatriement", "Responsabilité civile", "COVID-19 couvert"]
+            },
+            {
+              "name": "Premium",
+              "color": "#1A3C5E",
+              "features": ["Tout Confort +", "Sports extrêmes", "Couverture monde entier", "Annulation sans justificatif", "Conciergerie 24/7"]
+            }
+          ]
+        },
+        {
+          "id": "insurance_faq",
+          "type": "accordion_faq",
+          "title": "Questions fréquentes sur l'assurance voyage",
+          "items_count": 8
+        }
+      ]
+    },
+
+    {
+      "id": "esim",
+      "route": "/esim",
+      "name": "Page eSIM & Connectivité",
+      "sections": [
+        {
+          "id": "esim_hero",
+          "type": "page_hero",
+          "headline": "Restez connecté partout dans le monde",
+          "subheadline": "eSIMs disponibles dans +200 pays. Pas de roaming, pas de surprise."
+        },
+        {
+          "id": "esim_search",
+          "type": "search_form",
+          "fields": [
+            { "name": "country", "type": "country_search", "label": "Pays de destination" },
+            { "name": "duration", "type": "select", "label": "Durée du séjour" },
+            { "name": "data_volume", "type": "select", "label": "Volume de données souhaité" }
+          ],
+          "cta": "Trouver mon eSIM"
+        },
+        {
+          "id": "esim_coverage_map",
+          "type": "interactive_map",
+          "title": "🗺️ Couverture mondiale",
+          "description": "Carte interactive montrant les pays couverts avec indication de forfait disponible."
+        },
+        {
+          "id": "esim_plans",
+          "type": "pricing_table",
+          "title": "Forfaits populaires",
+          "columns": ["Destination", "Volume data", "Durée", "Prix", "Acheter"]
+        },
+        {
+          "id": "esim_howto",
+          "type": "steps_section",
+          "title": "Comment ça marche ?",
+          "steps": [
+            "1. Choisissez votre destination et votre forfait",
+            "2. Achetez et recevez votre QR code par email",
+            "3. Scannez le QR code avec votre smartphone",
+            "4. Connectez-vous instantanément à l'arrivée"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "packages",
+      "route": "/packages",
+      "name": "Page Séjours & Packages",
+      "sections": [
+        {
+          "id": "packages_hero",
+          "type": "page_hero",
+          "headline": "Tout compris, sans se prendre la tête",
+          "subheadline": "Packages clés en main : vol + hôtel + activités au meilleur prix."
+        },
+        {
+          "id": "packages_search",
+          "type": "search_form",
+          "fields": [
+            { "name": "departure_city", "type": "city_autocomplete", "label": "Ville de départ" },
+            { "name": "destination", "type": "destination_select", "label": "Destination" },
+            { "name": "travel_dates", "type": "date_range_picker", "label": "Dates de voyage" },
+            { "name": "travelers", "type": "dropdown_counter", "label": "Voyageurs" },
+            { "name": "budget", "type": "range_slider", "label": "Budget par personne (€)" }
+          ],
+          "cta": "Voir les packages"
+        },
+        {
+          "id": "packages_categories",
+          "type": "category_tabs",
+          "categories": ["🏖️ Balnéaire", "🏙️ City Break", "🏔️ Aventure", "🕌 Culture", "🍯 Lune de Miel", "👨‍👩‍👧 Famille", "🎒 Backpacker"]
+        },
+        {
+          "id": "featured_packages",
+          "type": "large_cards_grid",
+          "title": "Nos packages coups de cœur",
+          "card_fields": ["image", "titre", "durée", "inclus (vol + hôtel + activités)", "note voyageurs", "prix/personne", "bouton Réserver"]
+        }
+      ]
+    }
+  ],
+
+  "cross_cutting_features": {
+    "authentication": {
+      "methods": ["Email + Mot de passe", "Connexion Google", "Connexion Apple"],
+      "pages": ["Inscription", "Connexion", "Mot de passe oublié"],
+      "user_dashboard": {
+        "sections": ["Mes réservations", "Mes favoris", "Mes documents", "Mon profil", "Mes alertes prix"]
+      }
+    },
+    "multi_language": {
+      "default": "fr",
+      "languages": ["fr", "en", "es", "de", "ar"],
+      "selector": "drapeau dans la navbar"
+    },
+    "multi_currency": {
+      "default": "EUR",
+      "currencies": ["EUR", "USD", "GBP", "CAD", "MAD", "XOF"],
+      "selector": "dropdown dans la navbar"
+    },
+    "booking_flow": {
+      "steps": [
+        "1. Résultats de recherche",
+        "2. Sélection de l'offre",
+        "3. Informations voyageurs",
+        "4. Options supplémentaires (assurance, upgrade, etc.)",
+        "5. Récapitulatif & Paiement",
+        "6. Confirmation avec voucher"
+      ],
+      "payment_methods": ["Carte bancaire (Visa/Mastercard)", "PayPal", "Virement bancaire", "Apple Pay", "Google Pay"]
+    },
+    "price_alerts": {
+      "description": "L'utilisateur peut configurer des alertes prix pour une destination, recevra un email quand le prix baisse."
+    },
+    "comparison_tool": {
+      "description": "Possibilité de comparer jusqu'à 3 offres côte à côte (hôtels, voitures)."
+    },
+    "map_integration": {
+      "provider": "Leaflet.js ou Google Maps",
+      "used_on": ["Page hôtels (carte des établissements)", "Page activités", "Page eSIM (couverture)"]
+    },
+    "blog": {
+      "route": "/blog",
+      "description": "Section blog avec articles de voyage, conseils, guides de destinations.",
+      "categories": ["Conseils", "Destinations", "Budget", "Sécurité", "Tendances"]
+    },
+    "notifications": {
+      "types": ["Email de confirmation", "Rappel avant départ", "Alerte prix", "Newsletter"]
+    },
+    "seo": {
+      "meta_tags": "Oui, pour chaque page",
+      "sitemap": "Oui, généré automatiquement",
+      "og_tags": "Oui, pour partage réseaux sociaux"
+    },
+    "analytics": {
+      "tool": "Google Analytics 4 (GA4) + Hotjar pour heatmaps"
+    },
+    "performance": {
+      "lazy_loading": true,
+      "image_optimization": true,
+      "caching": "Service Worker + Cache-Control headers"
+    }
+  },
+
+  "technical_requirements": {
+    "frontend": {
+      "framework": "React 18+",
+      "styling": "Tailwind CSS 3+",
+      "routing": "React Router v6",
+      "state_management": "Zustand ou Redux Toolkit",
+      "forms": "React Hook Form + Zod (validation)",
+      "date_picker": "react-datepicker",
+      "icons": "lucide-react ou react-icons",
+      "animations": "Framer Motion",
+      "http_client": "Axios"
+    },
+    "backend": {
+      "runtime": "Node.js 18+",
+      "framework": "Express.js",
+      "auth": "JWT + bcrypt",
+      "email": "Nodemailer ou Resend",
+      "validation": "Joi ou Zod"
+    },
+    "database": {
+      "primary": "PostgreSQL avec Prisma ORM",
+      "cache": "Redis (optionnel pour les prix)"
+    },
+    "api_integration": {
+      "note": "IMPORTANT — Toutes les intégrations API de partenaires doivent être configurées côté backend uniquement. Aucun nom de partenaire, API key ou endpoint tiers ne doit être visible dans le frontend. Le frontend ne communique qu'avec l'API interne de Travel Big Pack.",
+      "backend_proxy": "Le backend agit comme proxy entre le frontend et les APIs tierces.",
+      "services_to_integrate": [
+        "API Vols (via un agrégateur — configuration backend uniquement)",
+        "API Hôtels (via un agrégateur — configuration backend uniquement)",
+        "API Location de voitures (via un agrégateur — configuration backend uniquement)",
+        "API Trains & Bus (via un agrégateur — configuration backend uniquement)",
+        "API Transferts (via un agrégateur — configuration backend uniquement)",
+        "API Tours & Activités (via un agrégateur — configuration backend uniquement)",
+        "API Assurance voyage (via un partenaire — configuration backend uniquement)",
+        "API eSIM (via un partenaire — configuration backend uniquement)"
+      ]
+    },
+    "environment_variables": [
+      "DATABASE_URL",
+      "JWT_SECRET",
+      "EMAIL_API_KEY",
+      "FLIGHTS_API_KEY",
+      "HOTELS_API_KEY",
+      "CARS_API_KEY",
+      "TRAINS_API_KEY",
+      "TRANSFERS_API_KEY",
+      "TOURS_API_KEY",
+      "INSURANCE_API_KEY",
+      "ESIM_API_KEY",
+      "MAPS_API_KEY",
+      "PAYMENT_SECRET_KEY"
+    ]
+  },
+
+  "branding_rules": {
+    "brand_visibility": [
+      "Le nom 'Travel Big Pack' doit apparaître dans le logo, le titre de l'onglet, les emails, et dans tous les textes marketing.",
+      "La charte graphique (couleurs, typographie) doit être respectée sur toutes les pages.",
+      "Tous les boutons CTA principaux doivent être dans la couleur secondaire (#F4A020)."
+    ],
+    "forbidden_mentions": [
+      "Ne jamais mentionner le nom d'aucun partenaire tiers dans le frontend.",
+      "Ne jamais afficher des logos de partenaires (compagnies aériennes, chaînes hôtelières, loueurs, etc.).",
+      "Ne jamais mentionner les plateformes de réservation sous-jacentes.",
+      "Toute l'expérience utilisateur doit rester 100% sous la marque Travel Big Pack."
+    ]
+  },
+
+  "replit_instructions": {
+    "setup_commands": [
+      "npm create vite@latest travel-big-pack -- --template react",
+      "cd travel-big-pack && npm install",
+      "npm install tailwindcss @tailwindcss/vite",
+      "npm install react-router-dom axios react-hook-form framer-motion lucide-react react-datepicker",
+      "npm install -D @types/react @types/react-dom"
+    ],
+    "folder_structure": {
+      "src": {
+        "components": "Composants réutilisables (Navbar, Footer, SearchForm, Card, etc.)",
+        "pages": "Une page par route (Home, Flights, Hotels, CarRental, etc.)",
+        "services": "Appels API centralisés",
+        "hooks": "Custom React hooks",
+        "context": "AuthContext, CurrencyContext, LanguageContext",
+        "utils": "Fonctions utilitaires (formatPrice, formatDate, etc.)",
+        "assets": "Images, icônes, fonts"
+      },
+      "server": {
+        "routes": "Routes API Express",
+        "controllers": "Logique métier",
+        "middleware": "Auth, CORS, rate-limit",
+        "services": "Proxy vers APIs tierces"
+      }
+    },
+    "start_with": "Commencer par la page d'accueil complète avec navbar et footer, puis implémenter les pages dans l'ordre de la barre de navigation.",
+    "priority_order": [
+      "1. Navbar & Footer (composants partagés)",
+      "2. Page Accueil complète",
+      "3. Page Vols avec formulaire de recherche",
+      "4. Page Hôtels avec formulaire de recherche",
+      "5. Page Location de voitures",
+      "6. Toutes les autres pages dans l'ordre",
+      "7. Système d'authentification",
+      "8. Dashboard utilisateur",
+      "9. Intégrations API backend"
+    ]
+  }
+}
