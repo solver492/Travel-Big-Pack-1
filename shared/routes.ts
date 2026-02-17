@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertBookingSchema, flights, hotels, activities, bookings } from './schema';
+import { insertBookingSchema, flights, hotels, activities, bookings, cars, transport } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -78,13 +78,39 @@ export const api = {
       },
     },
   },
+  cars: {
+    search: {
+      method: 'GET' as const,
+      path: '/api/cars/search' as const,
+      input: z.object({
+        location: z.string().optional(),
+      }).optional(),
+      responses: {
+        200: z.array(z.custom<typeof cars.$inferSelect>()),
+      },
+    },
+  },
+  transport: {
+    search: {
+      method: 'GET' as const,
+      path: '/api/transport/search' as const,
+      input: z.object({
+        type: z.enum(['train', 'bus']).optional(),
+        origin: z.string().optional(),
+        destination: z.string().optional(),
+      }).optional(),
+      responses: {
+        200: z.array(z.custom<typeof transport.$inferSelect>()),
+      },
+    },
+  },
   bookings: {
     list: {
       method: 'GET' as const,
       path: '/api/bookings' as const,
       responses: {
         200: z.array(z.custom<typeof bookings.$inferSelect>()),
-        401: errorSchemas.validation, // Unauthorized
+        401: errorSchemas.validation,
       },
     },
     create: {

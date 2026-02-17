@@ -53,10 +53,23 @@ export async function registerRoutes(
     res.json(activity);
   });
 
+  // === Cars ===
+  app.get(api.cars.search.path, async (req, res) => {
+    const { location } = req.query as { location?: string };
+    const cars = await storage.searchCars(location);
+    res.json(cars);
+  });
+
+  // === Transport ===
+  app.get(api.transport.search.path, async (req, res) => {
+    const { type, origin, destination } = req.query as { type?: string, origin?: string, destination?: string };
+    const results = await storage.searchTransport(type, origin, destination);
+    res.json(results);
+  });
+
   // === Bookings ===
   app.get(api.bookings.list.path, async (req, res) => {
     if (!req.isAuthenticated()) return res.status(401).json({ message: "Unauthorized" });
-    // Safe casting because we know req.user is populated by Replit Auth
     const userId = (req.user as any).claims.sub;
     const bookings = await storage.getBookingsByUser(userId);
     res.json(bookings);
@@ -104,17 +117,6 @@ async function seedDatabase() {
       stops: 0,
       cabinClass: "Economy"
     });
-    await storage.createFlight({
-      origin: "London (LHR)",
-      destination: "Tokyo (HND)",
-      departureDate: new Date("2025-07-01T11:00:00Z"),
-      airline: "Japan Airlines",
-      flightNumber: "JL044",
-      price: 1200,
-      duration: "13h 45m",
-      stops: 0,
-      cabinClass: "Economy"
-    });
     
     // Seed Hotels
     await storage.createHotel({
@@ -125,15 +127,6 @@ async function seedDatabase() {
       rating: 4.8,
       imageUrl: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000",
       amenities: ["WiFi", "Spa", "Restaurant"]
-    });
-    await storage.createHotel({
-      name: "Sunset Resort",
-      location: "Bali, Indonesia",
-      description: "Beachfront paradise with private villas.",
-      pricePerNight: 220,
-      rating: 4.9,
-      imageUrl: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80&w=1000",
-      amenities: ["Pool", "Beach Access", "Yoga"]
     });
 
     // Seed Activities
@@ -146,6 +139,27 @@ async function seedDatabase() {
       imageUrl: "https://images.unsplash.com/photo-1511739001486-6bfe10ce7859?auto=format&fit=crop&q=80&w=1000",
       category: "Tour",
       duration: "3 hours"
+    });
+
+    // Seed Cars
+    await storage.createCar({
+      model: "Fiat 500",
+      brand: "Fiat",
+      type: "Economy",
+      transmission: "Manual",
+      pricePerDay: 45,
+      imageUrl: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=1000",
+      location: "Rome, Italy"
+    });
+
+    // Seed Transport
+    await storage.createTransport({
+      type: "train",
+      origin: "London",
+      destination: "Paris",
+      departureTime: new Date("2025-08-10T09:00:00Z"),
+      price: 95,
+      operator: "Eurostar"
     });
     
     console.log("Database seeded successfully.");

@@ -3,10 +3,12 @@ import {
   flights, type Flight,
   hotels, type Hotel,
   activities, type Activity,
-  bookings, type Booking, type InsertBooking
+  bookings, type Booking, type InsertBooking,
+  cars, type Car,
+  transport, type Transport
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, like, or, and } from "drizzle-orm";
+import { eq, like, and } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -27,6 +29,14 @@ export interface IStorage {
   searchActivities(location?: string, category?: string): Promise<Activity[]>;
   getActivity(id: number): Promise<Activity | undefined>;
   createActivity(activity: any): Promise<Activity>;
+
+  // Cars
+  searchCars(location?: string): Promise<Car[]>;
+  createCar(car: any): Promise<Car>;
+
+  // Transport
+  searchTransport(type?: string, origin?: string, destination?: string): Promise<Transport[]>;
+  createTransport(transportItem: any): Promise<Transport>;
 
   // Bookings
   createBooking(booking: InsertBooking): Promise<Booking>;
@@ -49,17 +59,11 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
-  // Flights
-  async searchFlights(origin?: string, destination?: string, date?: string): Promise<Flight[]> {
+  async searchFlights(origin?: string, destination?: string, _date?: string): Promise<Flight[]> {
     const conditions = [];
     if (origin) conditions.push(like(flights.origin, `%${origin}%`));
     if (destination) conditions.push(like(flights.destination, `%${destination}%`));
-    // Date filtering would be more complex in real app, simplified here
-    
-    if (conditions.length > 0) {
-      return await db.select().from(flights).where(and(...conditions));
-    }
-    return await db.select().from(flights);
+    return await db.select().from(flights).where(conditions.length > 0 ? and(...conditions) : undefined);
   }
 
   async getFlight(id: number): Promise<Flight | undefined> {
@@ -72,11 +76,8 @@ export class DatabaseStorage implements IStorage {
     return newFlight;
   }
 
-  // Hotels
   async searchHotels(location?: string): Promise<Hotel[]> {
-    if (location) {
-      return await db.select().from(hotels).where(like(hotels.location, `%${location}%`));
-    }
+    if (location) return await db.select().from(hotels).where(like(hotels.location, `%${location}%`));
     return await db.select().from(hotels);
   }
 
@@ -90,16 +91,11 @@ export class DatabaseStorage implements IStorage {
     return newHotel;
   }
 
-  // Activities
   async searchActivities(location?: string, category?: string): Promise<Activity[]> {
     const conditions = [];
     if (location) conditions.push(like(activities.location, `%${location}%`));
     if (category) conditions.push(eq(activities.category, category));
-
-    if (conditions.length > 0) {
-      return await db.select().from(activities).where(and(...conditions));
-    }
-    return await db.select().from(activities);
+    return await db.select().from(activities).where(conditions.length > 0 ? and(...conditions) : undefined);
   }
 
   async getActivity(id: number): Promise<Activity | undefined> {
@@ -112,7 +108,29 @@ export class DatabaseStorage implements IStorage {
     return newActivity;
   }
 
-  // Bookings
+  async searchCars(location?: string): Promise<Car[]> {
+    if (location) return await db.select().from(cars).where(like(cars.location, `%${location}%`));
+    return await db.select().from(cars);
+  }
+
+  async createCar(car: any): Promise<Car> {
+    const [newCar] = await db.insert(cars).values(car).returning();
+    return newCar;
+  }
+
+  async searchTransport(type?: string, origin?: string, destination?: string): Promise<Transport[]> {
+    const conditions = [];
+    if (type) conditions.push(eq(transport.type, type));
+    if (origin) conditions.push(like(transport.origin, `%${origin}%`));
+    if (destination) conditions.push(like(transport.destination, `%${destination}%`));
+    return await db.select().from(transport).where(conditions.length > 0 ? and(...conditions) : undefined);
+  }
+
+  async createTransport(transportItem: any): Promise<Transport> {
+    const [newTransport] = await db.insert(transport).values(transportItem).returning();
+    return newTransport;
+  }
+
   async createBooking(booking: InsertBooking): Promise<Booking> {
     const [newBooking] = await db.insert(bookings).values(booking).returning();
     return newBooking;
