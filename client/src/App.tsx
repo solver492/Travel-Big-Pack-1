@@ -10,6 +10,8 @@ import Hotels from "@/pages/Hotels";
 import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/NotFound";
 import PlaceholderPage from "@/pages/PlaceholderPage";
+import CarRental from "@/pages/CarRental";
+import Transport from "@/pages/Transport";
 
 function Router() {
   return (
@@ -18,16 +20,12 @@ function Router() {
       <Route path="/vols" component={Flights} />
       <Route path="/hotels" component={Hotels} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/location-voitures" component={CarRental} />
+      <Route path="/trains-bus" component={Transport} />
       
-      {/* Placeholder Pages for MVP completeness */}
-      <Route path="/location-voitures">
-        {() => <PlaceholderPage title="Car Rentals" description="Find the perfect ride for your road trip. Coming soon!" />}
-      </Route>
-      <Route path="/trains-bus">
-        {() => <PlaceholderPage title="Trains & Bus" description="Eco-friendly travel options across continents." />}
-      </Route>
+      {/* Informational Pages */}
       <Route path="/transferts">
-        {() => <PlaceholderPage title="Airport Transfers" description="Seamless transfers from airport to hotel." />}
+        {() => <PlaceholderPage title="Airport Transfers" description="Seamless transfers from airport to hotel. Coming soon!" />}
       </Route>
       <Route path="/tours-activites">
         {() => <PlaceholderPage title="Tours & Activities" description="Unforgettable experiences tailored for you." />}

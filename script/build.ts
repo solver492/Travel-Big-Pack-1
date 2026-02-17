@@ -1,9 +1,8 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile } from "fs/promises";
+import { rm, readFile, writeFile, mkdir } from "fs/promises";
+import path from "path";
 
-// server deps to bundle to reduce openat(2) syscalls
-// which helps cold start times
 const allowlist = [
   "@google/generative-ai",
   "axios",
@@ -34,6 +33,7 @@ const allowlist = [
 
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
+  await mkdir("dist", { recursive: true });
 
   console.log("building client...");
   await viteBuild();
@@ -55,10 +55,25 @@ async function buildAll() {
     define: {
       "process.env.NODE_ENV": '"production"',
     },
+    target: "node20",
     minify: true,
     external: externals,
     logLevel: "info",
   });
+
+  // Create a minimal package.json for Hostinger
+  const hostingerPkg = {
+    name: pkg.name,
+    version: pkg.version,
+    type: "commonjs",
+    scripts: {
+      start: "node index.cjs"
+    },
+    dependencies: pkg.dependencies
+  };
+  await writeFile("dist/package.json", JSON.stringify(hostingerPkg, null, 2));
+  
+  console.log("Build complete. Ready for Hostinger deployment from 'dist' folder.");
 }
 
 buildAll().catch((err) => {
